@@ -22,6 +22,9 @@ module DesafioSmartfit2
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
 
+    # Add the following line to autoload the services directory
+    config.autoload_paths << Rails.root.join('services')
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

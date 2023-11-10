@@ -10,8 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_10_215820) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "locations", force: :cascade do |t|
+    t.string "uuid"
+    t.string "title"
+    t.string "content"
+    t.boolean "opened", default: false
+    t.string "mask"
+    t.string "towel"
+    t.string "fountain"
+    t.string "locker_room"
+    t.string "schedules"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "street"
+    t.string "region"
+    t.string "city_name"
+    t.string "state_name"
+    t.string "uf"
+  end
 
 end

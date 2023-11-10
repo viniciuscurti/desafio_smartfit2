@@ -1,9 +1,31 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+require 'json'
+require 'httparty'
+
+def generate_unique_id(id)
+  while Location.exists?(id: id)
+    id = id.to_i + 1
+  end
+  id
+end
+
+puts 'Limpando o banco de dados...'
+Location.destroy_all
+
+puts 'Creating locations...'
+
+location_url = 'https://test-frontend-developer.s3.amazonaws.com/data/locations.json'
+location_response = HTTParty.get(location_url)
+location_data = JSON.parse(location_response.body)
+location_data = location_data['locations']
+
+location_data.each do |location|
+  puts location
+  location['id'] = generate_unique_id(location['id'])
+  Location.create!(uuid: location['id'].to_s, title: location['title'], content: location['content'],
+                   opened: location['opened'], mask: location['mask'], towel: location['towel'],
+                   fountain: location['fountain'], locker_room: location['locker_room'],
+                   schedules: location['schedules'], street: location['street'], region: location['region'],
+                   city_name: location['city_name'], state_name: location['state_name'], uf: location['uf'])
+end
+
+puts 'Locations created!'

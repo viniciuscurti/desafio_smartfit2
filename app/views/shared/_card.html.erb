@@ -1,0 +1,62 @@
+<div class="cards">
+  <% @locations.each do |location| %>
+    <div class="card-category">
+      <% if location.schedules.present? %>
+        <div class="opened"><%= location.opened ? 'Aberto' : 'Fechado' %></div>
+        <div class="title"><%= location.title %></div>
+        <div class="content"><%= location.content %></div>
+        <div class="legend">
+          <div class="mask">
+            <% if location.mask == 'required' %>
+              <%= image_tag 'required-mask'%>
+            <% else %>
+              <%= image_tag 'recommended-mask'%>
+            <% end %>
+          </div>
+          <div class="towel">
+            <% if location.towel == 'required' %>
+              <%= image_tag 'required-towel'%>
+            <% else %>
+              <%= image_tag 'recommended-towel'%>
+            <% end %>
+          </div>
+          <div class="fountain">
+            <% if location.fountain == 'allowed' %>
+              <%= image_tag 'required-fountain'%>
+            <% elsif location.fountain == 'partial'%>
+              <%= image_tag 'partial-fountain'%>
+            <% else %>
+              <%= image_tag 'forbidden-fountain'%>
+            <% end %>
+          </div>
+          <div class="locker_room">
+            <% if location.locker_room == 'allowed' %>
+              <%= image_tag 'required-lockerroom'%>
+            <% elsif location.locker_room == 'partial'%>
+              <%= image_tag 'partial-lockerroom'%>
+            <% else %>
+              <%= image_tag 'forbidden-lockerroom'%>
+            <% end %>
+          </div>
+        </div>
+        <div class="weekdays">
+          <% if location.schedules['weekdays'] == "Seg. à Sex." %>
+            <div>Seg. a Sex.: <%= location.schedules['hour']%></div>
+          <% elsif location.schedules['weekdays'] == "Sab." %>
+            <div>Sab.: <%= location.schedules['hour'] %></div>
+          <% else %>
+            <div>Dom.: <%= location.schedules['hour'] %></div>
+          <% end %>
+        </div>
+      <%else%>
+        <div class="opened"><%= location.opened ? 'Aberto' : 'Fechado' %></div>
+        <div class="title"><%= location.title %></div>
+        <div class="street"><%= location.street %></div>
+        <div class="region"><%= location.region %></div>
+        <div class="city_name"><%= location.city_name %></div>
+        <div class="state_name"><%= location.state_name %></div>
+        <div class="uf"><%= location.uf %></div>
+      <%end%>
+    </div>
+  <% end %>
+</div>

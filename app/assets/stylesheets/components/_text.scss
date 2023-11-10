@@ -1,5 +1,4 @@
-// Specific CSS for your home-page
-text-container {
+.text-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -8,16 +7,16 @@ text-container {
   margin: 0 auto;
 }
 
-text-container h1 {
+.text-container h1 {
   font-size: 34px;
-  color: var(--dark-grey);
+  color: #333333;
 }
 
-text-container p {
-  color: var(--light-grey);
+.text-container p {
+  color: #808080;
 }
 
-text-container .heading {
+.text-container .text {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -27,8 +26,8 @@ text-container .heading {
   gap: 14px;
 }
 
-text-container .heading .heading-border {
-  height: 12px;
-  width: 40%;
-  background-color: var(--dark-grey);
+.text-container .text .text-border {
+  height: 20px;
+  width: 100%;
+  background-color: #333333;
 }

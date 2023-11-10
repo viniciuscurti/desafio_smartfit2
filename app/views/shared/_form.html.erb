@@ -1,0 +1,42 @@
+<div class="form">
+  <div class="form-icon">
+    <%= image_tag 'icon-hour.png'%>
+    Horário
+  </div>
+  <hr>
+  <h3>Qual horário você quer treinar?</h3>
+  <hr>
+  <%= form_with(url: search_results_path, method: :get, local: true) do |form| %>
+    <%= form.fields_for :schedules do |schedule| %>
+      <div class="radio-wrapper">
+        <%= schedule.radio_button :hours, 'morning' %>
+        <%= schedule.label :hours, 'Manhã', value: '06h às 12h' %>
+        <span>06:00 ás 12h</span>
+      </div>
+      <hr>
+      <div class="radio-wrapper">
+        <%= schedule.radio_button :hours, 'afternoon' %>
+        <%= schedule.label :hours, 'Tarde', value: '12:01h às 18:00h' %>
+        <span>12:01 ás 18h</span>
+      </div>
+      <hr>
+      <div class="radio-wrapper">
+        <%= schedule.radio_button :hours, 'night' %>
+        <%= schedule.label :hours, 'Noite', value: '18:01 às 23:00' %>
+        <span>18:01 ás 23h</span>
+      </div>
+      <hr>
+    <% end %>
+    <div class="checkbox-wrapper">
+      <div class="checkbox">
+        <%= form.check_box :opened, {}, 'false', 'true' %>
+        <%= form.label :opened, 'Exibir unidades fechadas' %>
+      </div>
+      <%# <span>Resultados encontrados: <%= @locations.count %></span> %>
+    </div>
+    <div class="btn-wrapper">
+      <%= form.submit 'Encontrar unidade', class: 'btn btn-primary' %>
+      <%= form.submit 'Limpar', class: 'btn btn-secondary' %>
+    </div>
+  <% end %>
+</div>
