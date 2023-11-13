@@ -19,7 +19,6 @@ location_data = JSON.parse(location_response.body)
 location_data = location_data['locations']
 
 location_data.each do |location|
-  puts location
   location['id'] = generate_unique_id(location['id'])
   Location.create!(uuid: location['id'].to_s, title: location['title'], content: location['content'],
                    opened: location['opened'], mask: location['mask'], towel: location['towel'],

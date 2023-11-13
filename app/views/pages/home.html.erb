@@ -1,5 +1,8 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/text' %>
-<%= render 'shared/form' %>
+<%= render 'locations/form' %>
 <%= render 'shared/legend' %>
-<%= render 'shared/card' %>
+<% if params.present? %>
+  <%= render 'locations/card', location: @locations %>
+<% end %>
+<%= render 'shared/footer' %>

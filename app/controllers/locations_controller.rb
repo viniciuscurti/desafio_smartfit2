@@ -2,21 +2,26 @@ class LocationsController < ApplicationController
   before_action :set_location, only: %i[show update destroy]
 
   def index
-    @locations = Location.all
+    @locations = LocationServices::Listener.new.call
     render json: @locations
   end
 
   def show
+    @location = LocationServices::Shower.new(params[:id]).call
     render json: @location
   end
 
-  def search_results(params)
-    @locations = FindBySchedule.new(params).call
-    render partial: 'shared/card', locals: { locations: @locations }
+  def search_results
+    if params['[locations]'].present?
+      @locations = LocationServices::FindBySchedule.new(params).call
+    else
+      @locations = LocationServices::Listener.new.call
+    end
+    render 'pages/home'
   end
 
   def create
-    @location, success = Creator.new(location_params).call
+    @location, success = LocationServices::Creator.new(location_params).call
     if success
       render json: @location, status: :created
     else
@@ -25,7 +30,7 @@ class LocationsController < ApplicationController
   end
 
   def update
-    @location, success = Updater.new(location_params).call
+    @location, success = LocationServices::Updater.new(location_params).call
     if success
       render json: @location
     else
@@ -34,7 +39,7 @@ class LocationsController < ApplicationController
   end
 
   def destroy
-    @location, success = Destroyer.new(location_params).call
+    @location, success = LocationServices::Destroyer.new(location_params).call
     if success
       render json: { message: 'Location deleted' }, status: :ok
     else

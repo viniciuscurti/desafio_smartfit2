@@ -1,0 +1,45 @@
+<div class="cards">
+  <% @locations.each do |location| %>
+    <div class="card">
+      <% if location.schedules.present? %>
+        <div class="opened">
+          <span class="<%= location.opened_status ? 'opened' : 'closed' %>">
+            <%= location.opened_status %>
+          </span>
+        </div>
+          <div class="title"><h3><%= location.title %></h3></div>
+          <div class="content"><p><%= location.normalized_content %></p></div>
+          <hr>
+          <ul>
+            <div class="mask">
+              <%= image_tag location.mask_image %>
+            </div>
+            <div class="towel">
+              <%= image_tag location.towel_image %>
+            </div>
+            <div class="fountain">
+              <%= image_tag location.fountain_image %>
+            </div>
+            <div class="locker_room">
+              <%= image_tag location.locker_room_image %>
+            </div>
+          </ul>
+          <ul>
+            <div class="weekdays">
+              <div>Seg. a Sex.: <%= location.weekday_schedule_week %></div>
+              <div>Sab.: <%= location.weekday_schedule_sat %></div>
+              <div>Dom.: <%= location.weekday_schedule_sun %></div>
+            </div>
+          </ul>
+      <%else%>
+         <div class="closed">
+          <span class="<%= location.opened_status ? 'opened' : 'closed' %>">
+            <%= location.opened_status %>
+          </span>
+        </div>
+        <div class="title"><h3><%= location.title %></h3></div>
+        <div class="street"><%= location.normalized_full_address %></div>
+      <%end%>
+    </div>
+  <% end %>
+</div>
