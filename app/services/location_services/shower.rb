@@ -9,6 +9,7 @@ module LocationServices
         @location = Location.find_by(uuid: @params[:uuid])
       else
         @location = Location.find_by(id: @params[:id])
+      end
     end
   end
 end
