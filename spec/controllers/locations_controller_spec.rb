@@ -13,8 +13,13 @@ RSpec.describe LocationsController, type: :controller do
       end
 
       it 'calls LocationServices::FindBySchedule' do
-        get :search_results, params: params, format: :turbo_stream
+        get(:search_results, params:)
         expect(LocationServices::FindBySchedule).to have_received(:new)
+      end
+
+      it 'assigns @locations' do
+        get(:search_results, params:)
+        expect(assigns(:locations)).to eq(:found)
       end
     end
 
@@ -26,7 +31,7 @@ RSpec.describe LocationsController, type: :controller do
       end
 
       it 'calls LocationServices::Listener' do
-        get :search_results, params: params, format: :turbo_stream
+        get(:search_results, params:)
         expect(LocationServices::Listener).to have_received(:new)
       end
     end

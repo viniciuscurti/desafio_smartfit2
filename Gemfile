@@ -67,6 +67,7 @@ group :development, :test do
   gem "rubocop-rspec"
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'rails-controller-testing'
 end
 
 group :development do

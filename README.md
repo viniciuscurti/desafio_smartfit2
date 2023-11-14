@@ -13,13 +13,13 @@ O aplicativo segue o princípio de responsabilidade única, o que significa que 
 1. Clone o repositório:
 
 ```bash
-git clone [url do seu repositório]
+git clone https://github.com/viniciuscurti/desafio_smartfit2.git
 ```
 
 2. Navegue até o diretório do projeto:
 
 ```bash
-cd [nome do seu diretório]
+cd desafio_smartfit2
 ```
 
 3. Construa a imagem Docker:
@@ -31,7 +31,7 @@ docker-compose build
 4. Crie o banco de dados e execute as migrações:
 
 ```bash
-docker-compose run --rm web rake db:create db:migrate
+docker-compose run --rm web rake db:create db:migrate db:seed
 ```
 
 5. Inicie o aplicativo:
@@ -42,10 +42,10 @@ docker-compose up
 
 Agora você deve ser capaz de acessar o aplicativo em `localhost:3000` (ou qualquer que seja a porta que você configurou) em seu navegador.
 
-## Contribuindo
+## Executando os Testes
 
-Se você deseja contribuir para este projeto, por favor, veja o arquivo `CONTRIBUTING.md` para mais detalhes.
+Para executar os testes, você pode usar o seguinte comando:
 
-## Licença
-
-Este projeto está licenciado sob a licença [insira o nome da licença aqui]. Veja o arquivo `LICENSE.md` para mais detalhes.
+```bash
+docker-compose run --rm web bundle exec rspec
+```
