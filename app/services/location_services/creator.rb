@@ -18,38 +18,33 @@ module LocationServices
     end
 
     def matching_params(location)
-      location.uuid = @uuid
-      location.title = @title
-      location.content = @content
-      location.opened = @opened
-      location.mask = @mask
-      location.towel = @towel
-      location.fountain = @fountain
-      location.locker_room = @locker_room
-      location.schedules = @schedules
-      location.street = @street
-      location.region = @region
-      location.city_name = @city_name
-      location.state_name = @state_name
-      location.uf = @uf
+      attributes = %i[uuid title content opened mask towel fountain locker_room street region city_name
+                      state_name uf]
+
+      attributes.each do |attribute|
+        value = instance_variable_get("@#{attribute}")
+        location.send("#{attribute}=", value) if value.present?
+      end
+
       location
     end
 
     def parsing_schedule(location)
-      schedules = {}
-
-      @schedules.each do |schedule|
-        schedules[:weekday] << schedule[:weekday]
-        schedules[:hours] << schedule[:hours]
+      schedules = @schedules.map do |schedule|
+        {
+          hours: schedule['hour'],
+          weekdays: schedule['weekdays']
+        }
       end
-
-      location.schedules = schedules
+      location.schedules = { 'hours' => schedules.map { |schedule| schedule[:hours] }, 'weekdays' => schedules.map { |schedule|
+ schedule[:weekdays] } } if schedules.present?
+      location
     end
 
     def call
       location = Location.new
       matching_params(location)
-      parsing_schedule(location)
+      parsing_schedule(location) if @schedules.present?
       location.save!
     end
   end

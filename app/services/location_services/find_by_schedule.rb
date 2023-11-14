@@ -21,8 +21,10 @@ module LocationServices
 
           next if schedule['weekdays'] == 'Obs.:'
 
-          schedule_start_hour, schedule_end_hour = schedule['hour'].split(' às ').map { |h| Time.strptime(h.gsub('h', ''), '%H') }
-          schedule_start_hour >= start_hour && schedule_end_hour <= end_hour
+          schedule_start_hour, schedule_end_hour = schedule['hour'].split(' às ').map do |h|
+            Time.strptime(h.gsub('h', ''), '%H')
+          end
+          (schedule_start_hour >= start_hour && schedule_end_hour <= end_hour) || schedule_start_hour >= start_hour || schedule_end_hour <= end_hour
         end
       end
     end

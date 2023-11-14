@@ -1,12 +1,10 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/text' %>
-<%= render 'locations/form', locations: @locations_count %>
+<%= render 'locations/form', locations: @locations %>
 <%= render 'shared/legend' %>
 
-<turbo-frame id="location_cards">
-  <% if params.present? %>
-    <%= render 'locations/cards_grid', locations: @locations %>
-  <% end %>
-</turbo-frame>
+<% if @locations.present? %>
+  <%= render 'locations/cards_grid', locations: @locations %>
+<% end %>
 
 <%= render 'shared/footer' %>

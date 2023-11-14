@@ -12,13 +12,15 @@ class LocationsController < ApplicationController
   end
 
   def search_results
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+
     if params['[locations]'].present?
       @locations = LocationServices::FindBySchedule.new(params).call
     else
       @locations = LocationServices::Listener.new.call
     end
-    render turbo_stream: turbo_stream.replace('location_cards', partial: 'locations/cards_grid',
-                                                                locals: { location: @locations })
+
+    render 'pages/home'
   end
 
   def create

@@ -1,6 +1,8 @@
 class Location < ApplicationRecord
   serialize :schedules, coder: JSON
 
+  before_save :set_default_opened
+
   def locker_room_image
     case locker_room
     when 'allowed'
@@ -38,5 +40,11 @@ class Location < ApplicationRecord
 
   def normalized_full_address
     "#{street}, #{region}, #{city_name}, #{state_name} - #{uf}"
+  end
+
+  private
+
+  def set_default_opened
+    self.opened = false if opened.nil?
   end
 end
