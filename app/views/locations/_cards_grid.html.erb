@@ -1,0 +1,5 @@
+<ul class="card-list">
+  <% @locations.each do |location| %>
+    <li><%= render 'card', location: location %></li>
+  <% end %>
+</ul>

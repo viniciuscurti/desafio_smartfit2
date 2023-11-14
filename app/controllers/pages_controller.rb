@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
   def home
-    @locations = Location.all
+    @locations = []
   end
 end

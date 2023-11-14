@@ -12,31 +12,33 @@
         <div class="radio-wrapper">
           <%= schedule.radio_button :hours, '06h às 12h' %>
           <%= schedule.label :hours, 'Manhã', value: '06h às 12h' %>
-          <span>06:00 ás 12h</span>
+          <span class="span-value">06:00 ás 12h</span>
         </div>
         <hr>
         <div class="radio-wrapper">
           <%= schedule.radio_button :hours, '12:01h às 18:00h' %>
           <%= schedule.label :hours, 'Tarde', value: '12:01h às 18:00h' %>
-          <span>12:01 ás 18h</span>
+          <span class="span-value">12:01 ás 18h</span>
         </div>
         <hr>
         <div class="radio-wrapper">
           <%= schedule.radio_button :hours, '18:01 às 23:00' %>
           <%= schedule.label :hours, 'Noite', value: '18:01 às 23:00' %>
-          <span>18:01 ás 23h</span>
+          <span class="span-value">18:01 ás 23h</span>
         </div>
         <hr>
       <% end %>
     <% end %>
     <div class="checkbox-wrapper">
       <div class="checkbox">
-        <%= form.label :include_closed, 'Exibir unidades fechadas' %>
         <%= form.check_box :include_closed %>
+        <%= form.label :include_closed, 'Exibir unidades fechadas' %>
       </div>
-      <% if @locations %>
-        <span>Resultados encontrados: <%= @locations.count %></span>
-      <% end %>
+      <div data-controller="locations">
+        <span class="results">
+          <span class="count" id="location-count">Resultados encontrados: <%= locations %></span>
+        </span>
+      </div>
     </div>
     <div class="btn-wrapper">
       <%= form.submit 'Encontrar unidade', class: 'btn btn-primary' %>

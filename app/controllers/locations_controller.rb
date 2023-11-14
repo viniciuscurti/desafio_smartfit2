@@ -17,7 +17,8 @@ class LocationsController < ApplicationController
     else
       @locations = LocationServices::Listener.new.call
     end
-    render 'pages/home'
+    render turbo_stream: turbo_stream.replace('location_cards', partial: 'locations/cards_grid',
+                                                                locals: { location: @locations })
   end
 
   def create

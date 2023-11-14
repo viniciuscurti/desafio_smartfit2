@@ -19,7 +19,7 @@
 .legend .legend-item {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 18px;
 }
 
 .legend .legend-item h4 {
@@ -42,7 +42,7 @@
 }
 
 .legend .legend-item .legend-images img {
-  width: 100px;
+  width: 85px;
 }
 
 @media (min-width: 1120px) {

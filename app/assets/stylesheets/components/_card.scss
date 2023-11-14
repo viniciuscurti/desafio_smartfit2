@@ -1,33 +1,27 @@
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 16px;
-  max-width: 80%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  margin-top: 12px;
-}
-
 .card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+
   padding: 12px 8px;
   border-radius: 8px;
+  margin-top: 18px;
+
   background-color: rgba(0, 0, 0, 0.1);
+
   -webkit-box-shadow: 1px 1px 1px 1px rgba(51, 51, 51, 0.15);
   -moz-box-shadow: 1px 1px 1px 1px rgba(51, 51, 51, 0.15);
   box-shadow: 1px 1px 1px 1px rgba(51, 51, 51, 0.15);
+
   gap: 8px;
-  width: 100%;
-  height: 400px;
+
+  width: 350px;
+  height: 420px;
 }
 
-.cards .card .hr {
-  height: 20px;
+.card .divider {
+  height: 2px;
   width: 100%;
   background-color: #d7d7d7;
 }
@@ -35,13 +29,20 @@
 .card span {
   font-weight: 700;
   font-size: 14px;
+  margin-top: 8px;
 }
 
-.card .span.opened {
+.card span.hour {
+  font-weight: 700;
+  font-size: 14px;
+  color: $light-gray;
+}
+
+.card span.opened {
   color: $green;
 }
 
-.card .span.closed {
+.card span.closed {
   color: $red;
 }
 
@@ -60,10 +61,10 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  gap: 12px;
+  gap: 24px;
 }
 
-.card .weekdays {
+.card li {
   display: flex;
   flex-direction: column;
 
@@ -72,14 +73,11 @@
   font-size: 12px;
 }
 
-.cards .card .ul .weekdays{
+.card li b {
   font-size: 16px;
   color: $dark-gray;
 }
 
 .card img {
-  width: 100%;
   height: 50px;
-  object-fit: cover;
-  border-radius: 8px;
 }

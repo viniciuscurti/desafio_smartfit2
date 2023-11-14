@@ -5,63 +5,36 @@
   padding: 20px;
   border-radius: 10px;
 
-.icon-hour,
-  .hour,
-  {
-  float: left;
-  clear: both;
-  width: 32px;
-}
-
-  .form_with {
-    .fields_for {
-      div {
-        margin-bottom: 1em;
-        border: 4px solid rgb(155, 152, 152);
-        border-radius: 18px;
-        padding: 24px;
-        color: $light-gray;
-
-        h3 {
-          clear: both;
-        }
-
-        .checkbox {
-          float: left;
-
-          span {
-            float: right;
-          }
-        }
-      }
+  .h3 {
+      clear: both;
     }
 
-    .btn-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-top: 1em;
+  .form .form-icon .img {
+    float: left;
+    clear: both;
+    width: 32px;
+  }
 
-      .btn {
-        font-size: 18px;
-        border-radius: 4px;
-        color: rgb(88, 88, 88);
-        font-weight: 700;
-        text-transform: uppercase;
-        padding: 14px;
-        width: 100%;
-        border: none;
-        cursor: pointer;
-      }
+  .radio-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1em;
+    padding: 8px;
+    color: $light-gray;
 
-      .btn-primary {
-        background-color: $yellow;
-      }
-
-      .btn-secondary {
-        background-color: transparent;
-        border: 2px solid rgb(155, 152, 152);
-      }
+    input[type="radio"] {
+        margin-right: 10px;
     }
+
+    label {
+      margin-right: 10px;
+    }
+
+    .span-value {
+      margin-left: auto;
+    }
+  }
 
     @media (min-width: 768px) {
       .fields_for {
@@ -74,6 +47,57 @@
         .btn {
           width: 25%;
         }
+      }
+    }
+
+  .btn-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+    width: 100%;
+    gap: 5px;
+
+
+    .btn {
+      font-size: 18px;
+      border-radius: 4px;
+      color: rgb(88, 88, 88);
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 14px;
+      width: 50%;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: $yellow;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      border: 2px solid rgb(155, 152, 152);
+    }
+  }
+
+  .checkbox-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .checkbox {
+      margin-left: 10px;
+      color: $black;
+    }
+
+    .results {
+      text-align: right;
+      color: $light-text;
+
+      .count {
+        font-weight: bold;
+        color: $black
       }
     }
   }

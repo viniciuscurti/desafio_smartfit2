@@ -1,0 +1,23 @@
+.footer {
+  background: black;
+  padding: 24px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column; // Adicione esta linha
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.footer img {
+  height: 100px;
+}
+
+.footer p {
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+}
